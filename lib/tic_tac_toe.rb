@@ -32,14 +32,17 @@ class TicTacToe
   end
 
   def right_cross
-    cross_for([[0, 0], [1, 1], [2, 2]])
+    cross_for(:right)
   end
 
   def left_cross
-    cross_for([[0, 2], [1, 1], [2, 0]])
+    cross_for(:left)
   end
 
-  def cross_for(positions)
-    positions.map { |l, r| board[l][r] }
+  def cross_for(direction)
+    positions = (0..2).to_a
+    positions.reverse! if direction == :left
+
+    positions.map.with_index { |r, i| board[i][r] }
   end
 end
